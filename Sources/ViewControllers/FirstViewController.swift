@@ -9,13 +9,11 @@ import UIKit
 
 class FirstViewController: UIViewController {
     
-    lazy var label: UILabel = {
-        let label = UILabel()
-        label.text = "Hello, World!"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private var counter: Int = 0
     
+    lazy var label = UILabel()
+    lazy var button = UIButton()
+
     // main view is loading in memory (1) - custom drawing
     override func loadView() {
         super.loadView()
@@ -27,7 +25,40 @@ class FirstViewController: UIViewController {
         setupViews()
         style()
         setupLayout()
-        
+    }
+    
+    func setupViews() {
+        setupLabel()
+        setupButton()
+        view.addSubviews(label, button)
+    }
+    
+    func setupLabel() {
+        label.text = "My first UIKit app"
+        label.textColor = .label
+        label.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func setupButton() {
+        button.setTitle("Tap me", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.setTitleColor(.red, for: .normal)
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    func setupLayout() {
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 100),
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    func style() {
+        view.backgroundColor = .blue
     }
     
     // view will appear (infinity) - updating all data
@@ -50,20 +81,11 @@ class FirstViewController: UIViewController {
         super.viewDidDisappear(animated)
     }
     
-    func setupViews() {
-        view.addSubview(label)
+    @objc
+    private func buttonTapped() {
+        counter += 1
+        label.text = "Tapped \(counter) times"
+        view.backgroundColor = counter % 2 == 0 ? .blue : .cyan
     }
-
-    func setupLayout() {
-        NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-    }
-    
-    func style() {
-        view.backgroundColor = .systemBackground
-    }
-
 }
 
