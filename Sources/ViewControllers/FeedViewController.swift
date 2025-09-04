@@ -15,6 +15,7 @@ class FeedViewController: UIViewController {
     let nameLabel = UILabel()
     let usernameLabel = UILabel()
     let postTextLabel = UILabel()
+    let postImageView = UIImageView()
     let likeButton = UIButton(type: .system)
 
     override func viewDidLoad() {
@@ -31,7 +32,8 @@ class FeedViewController: UIViewController {
         setupUsernameLabel()
         setupPostTextLabel()
         setupLikeButton()
-        view.addSubviews(cardView, avatarView, nameLabel, usernameLabel, postTextLabel, likeButton)
+        setupPostImageView()
+        view.addSubviews(cardView, avatarView, nameLabel, usernameLabel, postTextLabel, postImageView, likeButton)
     }
     
     func setupCardView() {
@@ -65,7 +67,7 @@ class FeedViewController: UIViewController {
     }
     
     func setupPostTextLabel() {
-        postTextLabel.text = "This is my first post on Instagram! I hope you like it. #swift #ios #programming #insta #fun #apple #iphone #mac #swiftui #xcode #macos #ipad #ui #ux #design #applewatch #watchos #development"
+        postTextLabel.text = "This is my first post on Instagram! I hope you like it. Today I want to talk about UIKit and SwiftUI. This is beautiful! They are so different, but they are also very similar. I think it is time to learn both of them. #swiftui #ui #ux #design #apple #iphone #mac #swift #ios #programming #insta #fun #applewatch #watchos #developments #swiftui #ui #ux #design #apple #iphone #mac #swift #ios #programming #insta #fun #applewatch #watchos #developments #swiftui #ui #ux #design #apple #iphone #mac #swift #ios #programming #insta #fun #apple #iphone #mac #swiftui #xcode #macos #ipad #ui #ux #design #applewatch #watchos #developments"
         postTextLabel.font = .systemFont(ofSize: 14)
         postTextLabel.numberOfLines = 0
         postTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -92,6 +94,12 @@ class FeedViewController: UIViewController {
             count = isLiked ? count + 1 : count - 1
             selder.setTitle(" \(count)", for: .normal)
         }
+    }
+    
+    func setupPostImageView() {
+        postImageView.image = UIImage(named: "YandexBackground")
+        postImageView.contentMode = .scaleAspectFill
+        postImageView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func setupConstraints() {
@@ -120,7 +128,12 @@ class FeedViewController: UIViewController {
             postTextLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
             postTextLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             
-            likeButton.topAnchor.constraint(equalTo: postTextLabel.bottomAnchor, constant: padding),
+            postImageView.topAnchor.constraint(equalTo: postTextLabel.bottomAnchor, constant: padding),
+            postImageView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: padding),
+            postImageView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
+            postImageView.heightAnchor.constraint(equalTo: postImageView.widthAnchor, multiplier: postImageView.image!.size.height / postImageView.image!.size.width),
+            
+            likeButton.topAnchor.constraint(equalTo: postImageView.bottomAnchor, constant: padding),
             likeButton.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -padding),
             likeButton.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -padding),
 
@@ -131,6 +144,9 @@ class FeedViewController: UIViewController {
         super.viewDidLayoutSubviews()
         avatarView.layer.cornerRadius = avatarView.bounds.width / 2
         avatarView.clipsToBounds = true
+        
+        postImageView.layer.cornerRadius = 8
+        postImageView.clipsToBounds = true
     }
     
     func setupStyle() {
