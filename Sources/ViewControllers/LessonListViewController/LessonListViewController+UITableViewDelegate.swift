@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 extension LessonListViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -18,8 +17,8 @@ extension LessonListViewController: UITableViewDelegate {
         let detailViewController = LessonDetailViewController()
         
         detailViewController.lesson = selectedLesson
+        detailViewController.lessonListViewController = self
         
         navigationController?.pushViewController(detailViewController, animated: true)
     }
-    
 }

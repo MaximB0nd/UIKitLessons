@@ -9,14 +9,16 @@ import UIKit
 
 class LessonListViewController: UIViewController {
     
-    private let tableView = UITableView()
-    let lessons = DataManager.shared.lessons
+    let tableView = UITableView()
+    let lessonsManager = DataManager.shared
+    var lessons: [Lesson] {
+        lessonsManager.lessons
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
         setupViews()
-        
     }
     
     private func setupViewController() {

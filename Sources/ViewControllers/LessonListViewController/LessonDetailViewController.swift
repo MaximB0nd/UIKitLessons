@@ -15,6 +15,9 @@ class LessonDetailViewController: UIViewController {
     let titleLabel = UILabel()
     let descriptionLabel = UILabel()
     let statusLabel = UILabel()
+    let complitionToggleButton = UIButton()
+    
+    weak var lessonListViewController: LessonListViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +36,8 @@ class LessonDetailViewController: UIViewController {
         setupTitleLabel()
         setupDescriptionLabel()
         setupStatusLabel()
-        view.addSubviews(titleLabel, descriptionLabel, statusLabel)
+        setupComplitionToggleButton()
+        view.addSubviews(titleLabel, descriptionLabel, statusLabel, complitionToggleButton)
     }
     
     private func setupTitleLabel() {
@@ -54,6 +58,18 @@ class LessonDetailViewController: UIViewController {
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    private func setupComplitionToggleButton() {
+        complitionToggleButton.setTitle(lesson.isCompleted ? "Удалить завершение" : "Завершить", for: .normal)
+        complitionToggleButton.setTitleColor(lesson.isCompleted ? .systemRed : .systemBlue, for: .normal)
+        complitionToggleButton.addTarget(self, action: #selector(onTapComplitionToggleButton), for: .touchUpInside)
+        complitionToggleButton.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    @objc
+    private func onTapComplitionToggleButton() {
+        toggleComplition()
+    }
+    
     private func setupConstraints() {
         let padding = CGFloat(20)
         
@@ -67,13 +83,20 @@ class LessonDetailViewController: UIViewController {
             
             statusLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: padding),
             statusLabel.centerXAnchor.constraint(equalTo: descriptionLabel.centerXAnchor),
+            
+            complitionToggleButton.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: padding),
+            complitionToggleButton.centerXAnchor.constraint(equalTo: statusLabel.centerXAnchor),
         ])
     }
     
-    private func updateViews() {
+    func updateViews() {
         titleLabel.text = lesson.title
         descriptionLabel.text = lesson.description
-        statusLabel.text = lesson.isCompleted ? "Статус: ✅ Пройдено" : "Статус: ⏳ В процессе"
-        statusLabel.textColor = lesson.isCompleted ? .systemGreen : .systemRed
+        UIView.animate(.bouncy) {
+            statusLabel.text = lesson.isCompleted ? "Статус: ✅ Пройдено" : "Статус: ⏳ В процессе"
+            statusLabel.textColor = lesson.isCompleted ? .systemGreen : .systemRed
+            complitionToggleButton.setTitle(lesson.isCompleted ? "Удалить завершение" : "Завершить", for: .normal)
+            complitionToggleButton.setTitleColor(lesson.isCompleted ? .systemRed : .systemBlue, for: .normal)
+        }
     }
 }

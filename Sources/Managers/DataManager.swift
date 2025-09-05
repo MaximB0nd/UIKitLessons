@@ -13,7 +13,7 @@ class DataManager {
     
     private init() {}
     
-    let lessons: [Lesson] = [
+    private var _lessons: [Lesson] = [
         Lesson(
             title: "Введение в UIKit",
             description: "Изучили основы UIViewController и его жизненный цикл.",
@@ -35,4 +35,14 @@ class DataManager {
             isCompleted: false
         )
     ]
+    
+    var lessons: [Lesson] {
+        _lessons
+    }
+    
+    func update(id: UUID, isCompleted: Bool) {
+        let lessonIndex = _lessons.firstIndex { $0.id == id }!
+        _lessons[lessonIndex].isCompleted = isCompleted
+    }
+    
 }

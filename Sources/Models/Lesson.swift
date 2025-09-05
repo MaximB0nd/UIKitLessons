@@ -8,7 +8,8 @@
 import Foundation
 
 struct Lesson {
+    let id = UUID()
     let title: String
     let description: String
-    let isCompleted: Bool
+    var isCompleted: Bool
 }
