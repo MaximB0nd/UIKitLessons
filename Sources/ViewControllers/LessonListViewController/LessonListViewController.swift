@@ -54,7 +54,7 @@ class LessonListViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "LessonCell")
+        tableView.register(LessonTableViewCell.self, forCellReuseIdentifier: "LessonCell")
         tableView.backgroundColor = .clear
         tableView.layer.cornerRadius = 20
         tableView.clipsToBounds = true

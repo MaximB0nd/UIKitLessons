@@ -15,18 +15,11 @@ extension LessonListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LessonCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LessonCell", for: indexPath) as! LessonTableViewCell
         
         let lesson = lessons[indexPath.row]
         
-        var content = cell.defaultContentConfiguration()
-        
-        content.text = lesson.title
-        content.secondaryText = lesson.isCompleted ? "✅ Пройдено" : "⏳ В процессе"
-        
-        cell.contentConfiguration = content
-        
-        cell.accessoryType = .disclosureIndicator
+        cell.configure(with: lesson)
         
         return cell
     }
