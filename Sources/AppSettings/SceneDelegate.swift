@@ -17,10 +17,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: scene)
         
         //window.rootViewController = FirstViewController()
-        window.rootViewController = FeedViewController()
+        //window.rootViewController = FeedViewController()
         
-        self.window = window
+        let lessonsViewController = LessonListViewController()
+        
+        let navigationController = UINavigationController(rootViewController: lessonsViewController)
+        
+        window.rootViewController = navigationController
+        
         window.makeKeyAndVisible()
+        self.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
