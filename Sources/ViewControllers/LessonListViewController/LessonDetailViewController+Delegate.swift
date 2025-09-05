@@ -13,7 +13,6 @@ extension LessonDetailViewController {
         lessonListViewController.lessonsManager.update(id: lesson.id, isCompleted: lesson.isCompleted)
         lessonListViewController.tableView.reloadData()
         updateViews()
+        navigationController?.popViewController(animated: true)
     }
 }
-
-

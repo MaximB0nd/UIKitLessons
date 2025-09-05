@@ -62,7 +62,7 @@ class LessonDetailViewController: UIViewController {
         complitionToggleButton.setTitle(lesson.isCompleted ? "Удалить завершение" : "Завершить", for: .normal)
         complitionToggleButton.setTitleColor(lesson.isCompleted ? .systemRed : .systemBlue, for: .normal)
         complitionToggleButton.addTarget(self, action: #selector(onTapComplitionToggleButton), for: .touchUpInside)
-        complitionToggleButton.translatesAutoresizingMaskIntoConstraints = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: complitionToggleButton)
     }
     
     @objc
@@ -83,9 +83,6 @@ class LessonDetailViewController: UIViewController {
             
             statusLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: padding),
             statusLabel.centerXAnchor.constraint(equalTo: descriptionLabel.centerXAnchor),
-            
-            complitionToggleButton.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: padding),
-            complitionToggleButton.centerXAnchor.constraint(equalTo: statusLabel.centerXAnchor),
         ])
     }
     
