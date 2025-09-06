@@ -12,11 +12,19 @@ extension LessonListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let selectedLesson = lessons[indexPath.row]
+        let section = indexPath.section
+        
+        var lesson = Lesson(title: "", description: "", isCompleted: false)
+        
+        if section == 0 {
+            lesson = uncompletedLessons[indexPath.row]
+        } else {
+            lesson = completedLessons[indexPath.row]
+        }
         
         let detailViewController = LessonDetailViewController()
         
-        detailViewController.lesson = selectedLesson
+        detailViewController.lesson = lesson
         detailViewController.lessonListViewController = self
         
         navigationController?.pushViewController(detailViewController, animated: true)

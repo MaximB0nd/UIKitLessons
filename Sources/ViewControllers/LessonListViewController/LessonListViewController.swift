@@ -16,6 +16,14 @@ class LessonListViewController: UIViewController {
     var lessons: [Lesson] {
         lessonsManager.lessons
     }
+    
+    var completedLessons: [Lesson] {
+        DataManager.shared.lessons.filter { $0.isCompleted }
+    }
+    
+    var uncompletedLessons: [Lesson] {
+        DataManager.shared.lessons.filter { !$0.isCompleted }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +63,7 @@ class LessonListViewController: UIViewController {
         tableView.delegate = self
         
         tableView.register(LessonTableViewCell.self, forCellReuseIdentifier: "LessonCell")
+        tableView.register(LessonSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: "LessonSectionHeader")
         tableView.backgroundColor = .clear
         tableView.layer.cornerRadius = 20
         tableView.clipsToBounds = true
