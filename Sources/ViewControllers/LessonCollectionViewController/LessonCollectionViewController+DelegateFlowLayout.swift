@@ -11,11 +11,15 @@ import UIKit
 extension LessonCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        guard !isListMode else {
+            return CGSize(width: collectionView.bounds.width, height: 110)
+        }
+        
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
     
         let sectionInset = layout.sectionInset
         let lineSpacing = layout.minimumLineSpacing
-        let numberOfLines: CGFloat = 2
+        let numberOfLines: CGFloat = isListMode ? 1 : 2
         
         let spacing = sectionInset.right + sectionInset.left + lineSpacing * (numberOfLines - 1)
         
