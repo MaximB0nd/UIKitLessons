@@ -7,9 +7,9 @@
 
 import Foundation
 
-class DataManager {
+class LessonDataManager {
     
-    static let shared = DataManager()
+    static let shared = LessonDataManager()
     
     private init() {}
     
@@ -17,24 +17,54 @@ class DataManager {
         Lesson(
             title: "Введение в UIKit",
             description: "Изучили основы UIViewController и его жизненный цикл.",
-            isCompleted: true
+            isCompleted: true,
+            isLocked: false,
+            iconName: "swift",
+            color: .systemOrange
         ),
         Lesson(
             title: "Auto Layout",
             description: "Глубоко погрузились в верстку кодом, anchor'ы и констрейнты.",
-            isCompleted: true
+            isCompleted: true,
+            isLocked: false,
+            iconName: "arrow.left.and.right.square",
+            color: .systemBlue
         ),
         Lesson(
             title: "Навигация",
             description: "Изучаем UINavigationController и передачу данных между экранами.",
-            isCompleted: false
+            isCompleted: true,
+            isLocked: false,
+            iconName: "map",
+            color: .systemGreen
         ),
         Lesson(
             title: "Таблицы (UITableView)",
             description: "Самая мощная и важная тема. Учимся работать со списками данных.",
-            isCompleted: false
-        )
+            isCompleted: false,
+            isLocked: false,
+            iconName: "tablecells",
+            color: .systemPurple
+        ),
+        Lesson(
+            title: "Коллекции",
+            description: "Это коллекции",
+            isCompleted: false,
+            isLocked: true,
+            iconName: "tablecells",
+            color: .systemRed
+        ),
+        Lesson(
+            title: "Таблицы (UITableView)",
+            description: "Самая мощная и важная тема. Учимся работать со списками данных.",
+            isCompleted: false,
+            isLocked: true,
+            iconName: "tablecells",
+            color: .systemRed
+        ),
     ]
+    
+    
     
     var lessons: [Lesson] {
         _lessons

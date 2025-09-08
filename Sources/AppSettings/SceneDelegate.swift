@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //window.rootViewController = FirstViewController()
         //window.rootViewController = FeedViewController()
         
-        let lessonsViewController = LessonListViewController()
+        let lessonsViewController = LessonCollectionViewController()
         
         let navigationController = UINavigationController(rootViewController: lessonsViewController)
         

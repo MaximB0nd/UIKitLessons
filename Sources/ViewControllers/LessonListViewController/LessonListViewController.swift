@@ -12,17 +12,17 @@ class LessonListViewController: UIViewController {
     let tableView = UITableView()
     let containerView = UIView()
     
-    let lessonsManager = DataManager.shared
+    let lessonManager = LessonDataManager.shared
     var lessons: [Lesson] {
-        lessonsManager.lessons
+        lessonManager.lessons
     }
     
     var completedLessons: [Lesson] {
-        DataManager.shared.lessons.filter { $0.isCompleted }
+        LessonDataManager.shared.lessons.filter { $0.isCompleted }
     }
     
     var uncompletedLessons: [Lesson] {
-        DataManager.shared.lessons.filter { !$0.isCompleted }
+        LessonDataManager.shared.lessons.filter { !$0.isCompleted }
     }
 
     override func viewDidLoad() {

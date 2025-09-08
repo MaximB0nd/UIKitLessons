@@ -14,7 +14,7 @@ extension LessonListViewController: UITableViewDelegate {
         
         let section = indexPath.section
         
-        var lesson = Lesson(title: "", description: "", isCompleted: false)
+        var lesson = lessons[0]
         
         if section == 0 {
             lesson = uncompletedLessons[indexPath.row]

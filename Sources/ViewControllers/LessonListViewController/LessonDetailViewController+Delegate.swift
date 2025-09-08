@@ -10,7 +10,7 @@ import Foundation
 extension LessonDetailViewController {
     func toggleComplition() {
         lesson.isCompleted = !lesson.isCompleted
-        lessonListViewController.lessonsManager.update(id: lesson.id, isCompleted: lesson.isCompleted)
+        lessonListViewController.lessonManager.update(id: lesson.id, isCompleted: lesson.isCompleted)
         lessonListViewController.tableView.reloadData()
         updateViews()
         navigationController?.popViewController(animated: true)
